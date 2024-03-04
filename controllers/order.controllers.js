@@ -5,7 +5,6 @@ async function createOrder(req, res) {
   try {
     const order = await Order.create(req.body);
     res.status(201).send(order);
-
     sendMail(req.user, `Dear ${req.user.fullName}, your order has been sent to ${order.shippingAddress}`);
   } catch (error) {
     console.log(error);

@@ -2,7 +2,6 @@ const { Prodact } = require("../models/products.models");
 const { uploadToCloudinary } = require("../upload-media-cloud/cloudinary");
 
 const getPruduct = async (req, res) => {
-  //Todo: add filter
   const product = await Prodact.find({});
   res.send(product);
 };
@@ -24,7 +23,7 @@ const newProduct = async (req, res) => {
     body.userId = req.user._id;
     const product = new Prodact(body);
     await product.save();
-    res.send({ message: "added", data: body });
+    res.send( "added");
   } catch (error) {
     console.log(error);
     res.status(400).send("Error");

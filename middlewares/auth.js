@@ -4,6 +4,7 @@ const { verifyToken } = require("../utils/jws");
 const auth = (req, res, next) => {
   try {
     const userToken = req.headers["authorization"];
+    console.log(userToken);
     if (!userToken) return res.status(401).send("unAuthorized");
     const token = userToken.split(" ")[1];
     const payload = verifyToken(token);

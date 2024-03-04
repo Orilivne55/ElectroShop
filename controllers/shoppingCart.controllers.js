@@ -56,16 +56,15 @@ const updateShoppingCart = async (req, res) => {
     res.status(400).send("Error");
   }
 };
+
 const minusProductToCart = async (req, res) => {
   const { shoppingCartId, item } = req.body;
   try {
-    console.log({ item });
     const shoppingCart = await ShoppingCart.findById(shoppingCartId);
     const foundIndex = shoppingCart.products.findIndex((product) => {
       return String(product.item) == item;
     });
     let data;
-    console.log({ foundIndex });
     if (foundIndex != -1) {
       shoppingCart.products[foundIndex].count -= 1;
       data = await ShoppingCart.findByIdAndUpdate(
